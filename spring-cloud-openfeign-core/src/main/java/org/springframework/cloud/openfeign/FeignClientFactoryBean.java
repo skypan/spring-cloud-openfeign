@@ -85,6 +85,7 @@ class FeignClientFactoryBean
 		Logger logger = loggerFactory.create(this.type);
 
 		// @formatter:off
+		// TODO 来自于FeignClientsConfiguration定义
 		Feign.Builder builder = get(context, Feign.Builder.class)
 				// required values
 				.logger(logger)

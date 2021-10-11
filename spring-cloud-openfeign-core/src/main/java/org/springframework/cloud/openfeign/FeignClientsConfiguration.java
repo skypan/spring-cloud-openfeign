@@ -69,6 +69,7 @@ public class FeignClientsConfiguration {
 	@Autowired(required = false)
 	private Logger logger;
 
+	// TODO 容器实例：请求结果解码器
 	@Bean
 	@ConditionalOnMissingBean
 	public Decoder feignDecoder() {
@@ -76,6 +77,7 @@ public class FeignClientsConfiguration {
 				new ResponseEntityDecoder(new SpringDecoder(this.messageConverters)));
 	}
 
+	// TODO 容器实例：请求编码器
 	@Bean
 	@ConditionalOnMissingBean
 	@ConditionalOnMissingClass("org.springframework.data.domain.Pageable")
@@ -90,6 +92,7 @@ public class FeignClientsConfiguration {
 		return new PageableSpringEncoder(new SpringEncoder(this.messageConverters));
 	}
 
+	// TODO 协议解析器，默认spring mvc解析器
 	@Bean
 	@ConditionalOnMissingBean
 	public Contract feignContract(ConversionService feignConversionService) {
@@ -111,6 +114,7 @@ public class FeignClientsConfiguration {
 		return Retryer.NEVER_RETRY;
 	}
 
+	// TODO 客户端建造者实例
 	@Bean
 	@Scope("prototype")
 	@ConditionalOnMissingBean

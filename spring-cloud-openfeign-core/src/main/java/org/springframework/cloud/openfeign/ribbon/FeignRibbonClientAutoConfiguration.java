@@ -42,11 +42,13 @@ import org.springframework.context.annotation.Primary;
  */
 @ConditionalOnClass({ ILoadBalancer.class, Feign.class })
 @Configuration
+// TODO 配置类具有优先选择权
 @AutoConfigureBefore(FeignAutoConfiguration.class)
 @EnableConfigurationProperties({ FeignHttpClientProperties.class })
 // Order is important here, last should be the default, first should be optional
 // see
 // https://github.com/spring-cloud/spring-cloud-netflix/issues/2086#issuecomment-316281653
+// TODO 配置：包装ApacheHttpClient实例的负载均衡客户端
 @Import({ HttpClientFeignLoadBalancedConfiguration.class,
 		OkHttpFeignLoadBalancedConfiguration.class,
 		DefaultFeignLoadBalancedConfiguration.class })
